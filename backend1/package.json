@@ -16,6 +16,7 @@
     "typescript": "^6.0.2"
   },
   "dependencies": {
+    "chess.js": "^1.4.0",
     "ws": "^8.20.0"
   }
 }
