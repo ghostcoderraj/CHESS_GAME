@@ -22,7 +22,15 @@ export class GameManager {
 
     removeUser(socket: WebSocket) {
         this.users = this.users.filter( user => user !== socket);
-        // stop the game here because the user left
+        if (this.pendingUser === socket) {
+            this.pendingUser = null;
+        }
+
+        const game = this.games.find((g) => g.hasPlayer(socket));
+        if (game) {
+            game.endGameByDisconnect(socket);
+            this.games = this.games.filter((g) => g !== game);
+        }
     }
 
     private addHandler(socket: WebSocket){
@@ -45,7 +53,7 @@ export class GameManager {
             if(message.type === MOVE){
                 const game = this.games.find(game => game.player1 === socket || game.player2 === socket);
                 if(game){
-                    game.makeMove(socket,message.move)
+                    game.makeMove(socket,message.payload)
                 }
             }
 

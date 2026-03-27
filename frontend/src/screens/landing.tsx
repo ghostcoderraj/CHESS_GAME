@@ -9,7 +9,7 @@ export const Landing = () => {
                         <img src={"/chessboard.jpeg"} className="max-w-96" />
                     </div>
                 <div className="pt-16">
-                    <div className="flex justify-ceneter">
+                    <div className="flex justify-center">
                         <h1 className="text-4xl font-bold text-white">Play chess online on the #2 Site!</h1>
                     </div>
                     
